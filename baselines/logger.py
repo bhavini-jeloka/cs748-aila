@@ -7,6 +7,7 @@ import time
 import datetime
 import tempfile
 from collections import defaultdict
+from tensorflow.python.client import _pywrap_events_writer
 
 LOG_OUTPUT_FORMATS     = ['stdout', 'log', 'csv']
 LOG_OUTPUT_FORMATS_MPI = ['log']
@@ -152,7 +153,7 @@ class TensorBoardOutputFormat(KVWriter):
         self.tf = tf
         self.event_pb2 = event_pb2
         self.pywrap_tensorflow = pywrap_tensorflow
-        self.writer = pywrap_tensorflow.EventsWriter(compat.as_bytes(path))
+        self.writer = _pywrap_events_writer.EventsWriter(compat.as_bytes(path))
 
     def writekvs(self, kvs):
         def summary_val(k, v):
