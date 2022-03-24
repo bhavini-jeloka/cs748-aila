@@ -3,11 +3,13 @@ import time
 import joblib
 import numpy as np
 import os.path as osp
-import tensorflow as tf
+# import tensorflow as tf
 from baselines import logger
 from collections import deque
 from baselines.common import explained_variance
 from baselines.common.runners import AbstractEnvRunner
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 class Model(object):
     def __init__(self, *, policy, ob_space, ac_space, nbatch_act, nbatch_train,

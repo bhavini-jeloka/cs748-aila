@@ -1,9 +1,11 @@
 import os
 import gym
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 from gym import spaces
 from collections import deque
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 def sample(logits):
     noise = tf.random_uniform(tf.shape(logits))
